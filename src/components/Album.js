@@ -14,6 +14,7 @@ class Album extends Component {
       album: album,
       currentSong: album.songs[0],
       currentTime: 0,
+      volume: 0.7,
       duration: album.songs[0].duration,
       isPlaying: false
     };
@@ -29,16 +30,21 @@ componentDidMount() {
     },
     durationchange: e => {
       this.setState({ duration: this.audioElement.duration });
+    },
+    volumechange: e => {
+      this.setState({ volume: this.audioElement.volume });
     }
   };
   this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
   this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+  this.audioElement.addEventListener('volumechange', this.eventListeners.volumechange);
 }
 
 componentWillUnmount() {
   this.audioElement.src = null;
   this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
   this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+  this.audioElement.removeEventListener('volumechange', this.eventListeners.volumechange);
 }
 
 play() {
@@ -88,6 +94,27 @@ handleTimeChange(e) {
   this.setState({ currentTime: newTime });
 }
 
+handleVolumeChange(e) {
+  const newVolume = e.target.value;
+  this.audioElement.volume = newVolume;
+  this.setState({ volume: newVolume });
+}
+
+formatTime(timeInSeconds) {
+  if (isNaN(timeInSeconds)) {
+    return "-:--";
+  } else {
+    timeInSeconds = Math.ceil(timeInSeconds);
+    const seconds = timeInSeconds % 60;
+    const minutes = Math.floor(timeInSeconds / 60);
+    if (seconds < 10) {
+      return minutes + ":0" + seconds;
+    } else {
+      return minutes + ":" + seconds;
+    }
+  }
+}
+
   render() {
     return (
       <section className="album">
@@ -117,7 +144,7 @@ handleTimeChange(e) {
                     </button>
                   </td>
                   <td className="song-title">{song.title}</td>
-                  <td className="song-duration">{song.duration}</td>
+                  <td className="song-duration">{this.formatTime(song.duration)}</td>
                 </tr>
               )
             }
@@ -128,10 +155,13 @@ handleTimeChange(e) {
           currentSong={this.state.currentSong}
           currentTime={this.audioElement.currentTime}
           duration={this.audioElement.duration}
+          volume={this.state.volume}
+          formatTime={(t) => this.formatTime(t)}
           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
         />
       </section>
     );
