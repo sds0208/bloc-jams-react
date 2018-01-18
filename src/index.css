@@ -15,31 +15,24 @@ header {
   max-height: 60px;
   top: 0;
   background-color: white;
-  font-size: 2rem;
+  font-size: 1rem;
+  font-family: Questrial;
 }
 
 .logo-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-decoration: none;
+  color: white;
 }
 
-.logo {
-  height: 50px;
-}
 
 .links {
-  margin-right: 3%;
-  padding-right: 3%;
+  padding-right: 15%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  color: #fff;
-}
-
-Link {
-  padding-right: 20px;
-  color: #fff;
 }
 
 .landing {
@@ -51,14 +44,14 @@ Link {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  min-height: 600px;
+  min-height: 300px;
   background-image: url('/././assets/images/landing_images/speaker.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   margin-bottom: 0;
   padding: 0;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .selling-points {
@@ -74,11 +67,17 @@ Link {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 300px;
+  min-height: 130px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   padding: 0;
+  font-size: 1rem;
+}
+
+.description {
+  font-size: .75rem;
+  font-family: Questrial;
 }
 
 .one {
@@ -91,4 +90,224 @@ Link {
 
 .three {
     background-image: url('/././assets/images/landing_images/phone_headphones.jpg');
+}
+
+.library {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  font-family: Questrial;
+}
+
+.album {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  font-family: Questrial;
+}
+
+.album-cover,
+#album-cover-art {
+  width: 100%;
+  max-width: 700px;
+}
+
+.library-album-info {
+  padding-top: 2%;
+  padding-bottom: 7%;
+}
+
+.album-details {
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#album-title,
+.artist,
+#release-info {
+  padding-bottom: 1%;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+#album-title,
+#release-info {
+  font-size: 1.1rem;
+}
+
+#song-list {
+  margin: 0 auto;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-size: .8rem;
+}
+
+.song-playing {
+  color: #FF00FF;
+}
+
+.song-playing .song-actions button {
+  background-color: #FF00FF;
+}
+
+.song-actions button {
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 7px;
+  border: 1px solid black;
+  font-size: .7rem;
+}
+
+
+.player-bar {
+  display: grid;
+  grid-template-rows: 33.3% 33.3% 33.3%;
+  position: fixed;
+  top: 120px;
+  left: 5%;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: lightgrey;
+  min-height: 75px;
+  font-size: .8rem;
+  opacity: 0.5;
+}
+
+#buttons,
+#time-control,
+#volume-control {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 7px;
+}
+
+#buttons button {
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#previous {
+  margin-right: 5px;
+}
+
+#next {
+  margin-left: 5px;
+}
+
+#volume-control {
+  margin-bottom: 5px;
+}
+
+/* Media Queries */
+
+@media (min-width: 320px) {
+  .links {
+    padding-right: 10%;
+  }
+}
+
+/*@media (min-width: 520px) {
+  header {
+    font-size: 1.5rem;
+  }
+
+  .links {
+    font-size: 1.3rem;
+    padding-right: 7%;
+  }
+
+  Link {
+    padding-right: 20px;
+  }
+
+  .hero-title-div {
+    min-height: 600px;
+    font-size: 4rem;
+  }
+
+  .point {
+    min-height: 200px;
+    font-size: 1.2rem;
+  }
+
+  .description {
+    font-size: .95rem;
+  }
+
+  #album-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .album-details {
+    background-color: black;
+    color: white;
+  }
+
+  #song-list {
+    margin: 0 auto;
+    font-size: .9rem;
+  }
+
+  .player-bar {
+    max-width: 1200px;
+  }
+}*/
+
+@media (min-width: 700px) {
+  header {
+    font-size: 2rem;
+  }
+
+  .links {
+    font-size: 1.3rem;
+    padding-right: 5%;
+  }
+
+  Link {
+    padding-right: 20px;
+  }
+
+  .hero-title-div {
+    min-height: 600px;
+    font-size: 4rem;
+  }
+
+  .point {
+    min-height: 300px;
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  #album-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  .album-details {
+    background-color: black;
+    color: white;
+  }
+
+}
+
+@media (min-width: 1000px) {
+  .links {
+    padding-right: 3.5%;
+  }
 }

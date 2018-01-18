@@ -11,9 +11,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="logo-div">
+          <Link to ='/' className="logo-div">
             BLOC JAMS
-          </div>
+          </Link>
           <div className="links">
             <Link to='/'>Landing</Link>
             <Link to='/library'>Library</Link>
