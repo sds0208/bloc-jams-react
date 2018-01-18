@@ -132,7 +132,7 @@ formatTime(timeInSeconds) {
                       <td className="song-actions">
                         <span className="song-number">{index+1}.  </span>
                         <button>
-                          <span className={this.state.isPlaying && this.state.currentSong === song ? 'ion-pause' : 'ion-play'}></span>
+                          <span className={this.state.currentSong === song && this.state.isPlaying ? 'ion-pause' : 'ion-play' }></span>
                         </button>
                       </td>
                       <td className="song-title">{song.title}</td>
