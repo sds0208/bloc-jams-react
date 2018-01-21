@@ -16,11 +16,13 @@ class Album extends Component {
       currentTime: 0,
       volume: 0.7,
       duration: album.songs[0].duration,
-      isPlaying: false
+      isPlaying: false,
+      hovering: false
     };
 
     this.audioElement = document.createElement('audio');
     this.audioElement.src = album.songs[0].audioSrc;
+
 }
 
 componentDidMount() {
@@ -33,7 +35,8 @@ componentDidMount() {
     },
     volumechange: e => {
       this.setState({ volume: this.audioElement.volume });
-    }
+    },
+
   };
   this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
   this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
@@ -113,9 +116,13 @@ formatTime(timeInSeconds) {
       return minutes + ":" + seconds;
     }
   }
+
 }
 
   render() {
+    const handleMouseEnter = () => this.setState({hovering: true});
+    const handleMouseLeave = () => this.setState({hovering: false});
+
     return (
       <section className="album">
         <section id="album-info">
@@ -130,9 +137,11 @@ formatTime(timeInSeconds) {
                   this.state.album.songs.map( (song, index) =>
                     <tr className={this.state.currentSong === song ? 'song-playing' : 'song'} key={index} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions">
-                        <span className="song-number">{index+1}.  </span>
-                        <button>
-                          <span className={this.state.currentSong === song && this.state.isPlaying ? 'ion-pause' : 'ion-play' }></span>
+
+                        <button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+                          <span className={this.state.hovering || this.state.currentSong === song ? 'no-show' : 'song-number'}>{index+1}.  </span>
+                          <span className={this.state.hovering || (this.state.currentSong === song && !this.state.isPlaying) ? 'ion-play' : 'no-show' }></span>
+                          <span className={(this.state.currentSong === song && this.state.isPlaying && this.state.hovering) || (this.state.currentSong === song && this.state.isPlaying)? 'ion-pause' : 'no-show' }></span>
                         </button>
                       </td>
                       <td className="song-title">{song.title}</td>
